@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using ArquiteturaPadrao.Domain.Core.Interfaces;
 using ArquiteturaPadrao.Infra.Data.Context;
-using Equinox.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArquiteturaPadrao.Infra.Data.Repository

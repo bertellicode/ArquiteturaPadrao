@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArquiteturaPadrao.Application\ArquiteturaPadrao.Application.csproj" />
+    <ProjectReference Include="..\ArquiteturaPadrao.Infra.CrossCutting.DependencyInjection\ArquiteturaPadrao.Infra.CrossCutting.DependencyInjection.csproj" />
     <ProjectReference Include="..\ArquiteturaPadrao.Infra.CrossCutting.Identity\ArquiteturaPadrao.Infra.CrossCutting.Identity.csproj" />
-    <ProjectReference Include="..\Security.Infra.CrossCutting.DependencyInjection\Security.Infra.CrossCutting.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ArquiteturaPadrao.Infra.CrossCutting.JWT.Interfaces;
+using ArquiteturaPadrao.Infra.CrossCutting.Providers.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,6 +14,8 @@ namespace ArquiteturaPadrao.Infra.CrossCutting.JWT.Configurations
     public class TokenConfiguration : ITokenConfiguration
     {
         private readonly ICredentialsConfiguration _credentialsConfiguration;
+
+        private readonly IPathProvider _pathProvider;
 
         public SymmetricSecurityKey SymmetricKeySigningCredentials => _credentialsConfiguration.SymmetricKeySigningCredentials;
 
@@ -26,18 +29,22 @@ namespace ArquiteturaPadrao.Infra.CrossCutting.JWT.Configurations
 
         public string Bearer { get; set; }
 
-        public TokenConfiguration(ICredentialsConfiguration credentialsConfiguration)
+        public TokenConfiguration(ICredentialsConfiguration credentialsConfiguration,
+                                    IPathProvider pathProvider)
         {
             _credentialsConfiguration = credentialsConfiguration;
+            _pathProvider = pathProvider;
             SetDefaultValues();
         }
 
         public void SetDefaultValues()
         {
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "..", "Security.Infra.CrossCutting.JWT");
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "..", "ArquiteturaPadrao.Infra.CrossCutting.JWT");
+
+            var filePath = _pathProvider.MapPathFromContentRoot("..", "ArquiteturaPadrao.Infra.CrossCutting.JWT");
 
             var configuration = new ConfigurationBuilder()
-                                .SetBasePath(folder)
+                                .SetBasePath(filePath)
                                 .AddJsonFile("appsettings.json")
                                 .Build();
 

@@ -1,5 +1,5 @@
-﻿using ArquiteturaPadrao.Infra.Data.Context;
-using Equinox.Domain.Interfaces;
+﻿using ArquiteturaPadrao.Domain.Core.Interfaces;
+using ArquiteturaPadrao.Infra.Data.Context;
 
 namespace ArquiteturaPadrao.Infra.Data.UoW
 {

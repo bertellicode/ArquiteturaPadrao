@@ -4,13 +4,14 @@ using ArquiteturaPadrao.Application.EventSourcedNormalizers;
 using ArquiteturaPadrao.Application.Interfaces;
 using ArquiteturaPadrao.Application.ViewModels;
 using ArquiteturaPadrao.Domain.Core.Bus;
+using ArquiteturaPadrao.Domain.Core.Interfaces;
 using ArquiteturaPadrao.Domain.Core.Notifications;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Commands;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Interfaces;
 using ArquiteturaPadrao.Infra.Data.Repository.EventSourcing;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Equinox.Domain.Interfaces;
+using MediatR;
 
 namespace ArquiteturaPadrao.Application.Services
 {
@@ -19,7 +20,7 @@ namespace ArquiteturaPadrao.Application.Services
         private readonly ICustomerRepository _customerRepository;
 
         public CustomerAppService(IUnitOfWork uow,
-            DomainNotificationHandler notifications,
+            INotificationHandler<DomainNotification> notifications,
             IMediatorHandler bus,
             IMapper mapper,
             IEventStoreRepository eventStoreRepository,

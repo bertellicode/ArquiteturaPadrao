@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ArquiteturaPadrao.Services.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CustomerController : ApiController
     {
         private readonly ICustomerAppService _customerAppService;
@@ -41,7 +41,7 @@ namespace ArquiteturaPadrao.Services.Api.Controllers
         }     
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        //[Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
         public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
         {
@@ -57,7 +57,7 @@ namespace ArquiteturaPadrao.Services.Api.Controllers
         }
         
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        //[Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
         public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
         {
@@ -73,7 +73,7 @@ namespace ArquiteturaPadrao.Services.Api.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        //[Authorize(Policy = "CanRemoveCustomerData")]
         [Route("customer-management")]
         public IActionResult Delete(Guid id)
         {

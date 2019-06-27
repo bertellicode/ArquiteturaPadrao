@@ -1,5 +1,5 @@
-﻿using ArquiteturaPadrao.Domain.CustomerAggregate.Models;
-using Equinox.Domain.Interfaces;
+﻿using ArquiteturaPadrao.Domain.Core.Interfaces;
+using ArquiteturaPadrao.Domain.CustomerAggregate.Models;
 
 namespace ArquiteturaPadrao.Domain.CustomerAggregate.Interfaces
 {

@@ -1,5 +1,6 @@
 ﻿using ArquiteturaPadrao.Infra.CrossCutting.Identity.Data;
 using ArquiteturaPadrao.Services.Api.Configurations;
+using ArquiteturaPadrao.Services.Api.Handlers;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +42,7 @@ namespace ArquiteturaPadrao.Services.Api
 
             services.AddAutoMapperSetup();
 
-            services.AddSecurity(Configuration);
+            //services.AddSecurity(Configuration);
 
             services.AddSwaggerConfig();
 
@@ -63,6 +64,11 @@ namespace ArquiteturaPadrao.Services.Api
                 app.UseHsts();
             }
 
+            app.UseExceptionHandler(new ExceptionHandlerOptions
+            {
+                ExceptionHandler = new ExceptionHandler().Invoke
+            });
+
             app.UseCors(c =>
             {
                 c.AllowAnyHeader();
@@ -71,7 +77,7 @@ namespace ArquiteturaPadrao.Services.Api
             });
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseMvc();
 
             app.UseSwagger();

@@ -1,10 +1,11 @@
 ﻿using System;
 using ArquiteturaPadrao.Application.Interfaces;
 using ArquiteturaPadrao.Domain.Core.Bus;
+using ArquiteturaPadrao.Domain.Core.Interfaces;
 using ArquiteturaPadrao.Domain.Core.Notifications;
 using ArquiteturaPadrao.Infra.Data.Repository.EventSourcing;
 using AutoMapper;
-using Equinox.Domain.Interfaces;
+using MediatR;
 
 namespace ArquiteturaPadrao.Application.Services
 {
@@ -16,14 +17,14 @@ namespace ArquiteturaPadrao.Application.Services
         protected readonly IMapper _mapper;
         protected readonly IEventStoreRepository _eventStoreRepository;
 
-        public AppService(IUnitOfWork uow, 
-            DomainNotificationHandler notifications, 
+        public AppService(IUnitOfWork uow,
+            INotificationHandler<DomainNotification> notifications, 
             IMediatorHandler bus,
             IMapper mapper,
             IEventStoreRepository eventStoreRepository)
         {
             _uow = uow;
-            _notifications = notifications;
+            _notifications = (DomainNotificationHandler)notifications;
             _bus = bus;
             _mapper = mapper;
             _eventStoreRepository = eventStoreRepository;

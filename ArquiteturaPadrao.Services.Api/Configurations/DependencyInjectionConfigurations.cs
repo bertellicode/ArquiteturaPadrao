@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Security.Infra.CrossCutting.DependencyInjection;
+﻿using ArquiteturaPadrao.Infra.CrossCutting.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ArquiteturaPadrao.Services.Api.Configurations
 {

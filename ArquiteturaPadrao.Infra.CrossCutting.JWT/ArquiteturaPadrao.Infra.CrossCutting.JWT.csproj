@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ArquiteturaPadrao.Infra.CrossCutting.Providers\ArquiteturaPadrao.Infra.CrossCutting.Providers.csproj" />
+  </ItemGroup>
+
 </Project>
