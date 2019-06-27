@@ -1,9 +1,8 @@
 ﻿using ArquiteturaPadrao.Domain.Core.Bus;
-using ArquiteturaPadrao.Domain.Core.Commands;
 using ArquiteturaPadrao.Domain.Core.Notifications;
 using MediatR;
 
-namespace ArquiteturaPadrao.Domain.Core.CommandHandlers
+namespace ArquiteturaPadrao.Domain.Core.Commands.CommandHandlers
 {
     public class CommandHandler
     {

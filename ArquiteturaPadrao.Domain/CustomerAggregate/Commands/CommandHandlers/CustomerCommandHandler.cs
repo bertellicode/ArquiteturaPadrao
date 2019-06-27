@@ -2,14 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ArquiteturaPadrao.Domain.Core.Bus;
-using ArquiteturaPadrao.Domain.Core.CommandHandlers;
+using ArquiteturaPadrao.Domain.Core.Commands.CommandHandlers;
 using ArquiteturaPadrao.Domain.Core.Notifications;
-using ArquiteturaPadrao.Domain.CustomerAggregate.Commands;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Interfaces;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Models;
 using MediatR;
 
-namespace ArquiteturaPadrao.Domain.CustomerAggregate.CommandHandlers
+namespace ArquiteturaPadrao.Domain.CustomerAggregate.Commands.CommandHandlers
 {
     public class CustomerCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewCustomerCommand, bool>,

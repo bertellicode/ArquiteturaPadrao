@@ -1,9 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using ArquiteturaPadrao.Domain.CustomerAggregate.Events;
 using MediatR;
 
-namespace ArquiteturaPadrao.Domain.CustomerAggregate.EventHandlers
+namespace ArquiteturaPadrao.Domain.CustomerAggregate.Events.EventHandlers
 {
     public class CustomerEventHandler :
         INotificationHandler<CustomerRegisteredEvent>,

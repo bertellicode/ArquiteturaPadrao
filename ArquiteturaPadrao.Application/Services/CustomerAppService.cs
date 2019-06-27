@@ -6,6 +6,7 @@ using ArquiteturaPadrao.Application.ViewModels;
 using ArquiteturaPadrao.Domain.Core.Bus;
 using ArquiteturaPadrao.Domain.Core.Interfaces;
 using ArquiteturaPadrao.Domain.Core.Notifications;
+using ArquiteturaPadrao.Domain.Core.Queries;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Commands;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Interfaces;
 using ArquiteturaPadrao.Infra.Data.Repository.EventSourcing;
@@ -17,26 +18,24 @@ namespace ArquiteturaPadrao.Application.Services
 {
     public class CustomerAppService : AppService, ICustomerAppService
     {
-        private readonly ICustomerRepository _customerRepository;
-
         public CustomerAppService(IUnitOfWork uow,
             INotificationHandler<DomainNotification> notifications,
             IMediatorHandler bus,
             IMapper mapper,
-            IEventStoreRepository eventStoreRepository,
-            ICustomerRepository customerRepository) : base(uow, notifications, bus, mapper, eventStoreRepository)
+            IEventStoreRepository eventStoreRepository) : base(uow, notifications, bus, mapper, eventStoreRepository)
         {
-            _customerRepository = customerRepository;
         }
 
-        public IEnumerable<CustomerViewModel> GetAll()
+        public  IEnumerable<CustomerViewModel> GetAll()
         {
-            return _customerRepository.GetAll().ProjectTo<CustomerViewModel>(_mapper.ConfigurationProvider);
+            var customers = _bus.SendQueryCollection(new QueryCollection<CustomerViewModel>()).Result;
+            return customers;
         }
 
         public CustomerViewModel GetById(Guid id)
         {
-            return _mapper.Map<CustomerViewModel>(_customerRepository.GetById(id));
+            var customers = _bus.SendQuery(new QuerySingle<CustomerViewModel>()).Result;
+            return customers;
         }
 
         public void Register(CustomerViewModel customerViewModel)
