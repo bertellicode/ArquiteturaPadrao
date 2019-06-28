@@ -1,11 +1,14 @@
 ﻿
 
 using ArquiteturaPadrao.Application.Interfaces;
+using ArquiteturaPadrao.Application.Queries;
 using ArquiteturaPadrao.Application.Services;
+using ArquiteturaPadrao.Application.ViewModels;
 using ArquiteturaPadrao.Domain.Core.Bus;
 using ArquiteturaPadrao.Domain.Core.Events;
 using ArquiteturaPadrao.Domain.Core.Interfaces;
 using ArquiteturaPadrao.Domain.Core.Notifications;
+using ArquiteturaPadrao.Domain.Core.Queries;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Commands;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Commands.CommandHandlers;
 using ArquiteturaPadrao.Domain.CustomerAggregate.Events;
@@ -25,6 +28,7 @@ using ArquiteturaPadrao.Infra.Data.UoW;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace ArquiteturaPadrao.Infra.CrossCutting.DependencyInjection
 {
@@ -37,6 +41,10 @@ namespace ArquiteturaPadrao.Infra.CrossCutting.DependencyInjection
 
             // Application
             services.AddScoped<ICustomerAppService, CustomerAppService>();
+
+            // Application - Queries
+            services.AddScoped<IRequestHandler<QueryCollection<CustomerViewModel>, IEnumerable<CustomerViewModel>>, CustomerQueryHandler>();
+            services.AddScoped<IRequestHandler<QuerySingle<CustomerViewModel>, CustomerViewModel>, CustomerQueryHandler>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
